@@ -23,24 +23,25 @@ namespace JobNimbusAssessment
             const char OPEN_BRACKET = '<';
             const char CLOSE_BRACKET = '>';
 
-            Stack<char> openBrackets = new Stack<char>();
+            int openBrackets = 0;
             foreach(char character in target)
             {
                 if (character == OPEN_BRACKET)
                 {
-                    openBrackets.Push(OPEN_BRACKET);
-                }
-                else if (character == CLOSE_BRACKET && !openBrackets.Any())
-                {
-                    return false;
+                    openBrackets++;
                 }
                 else if (character == CLOSE_BRACKET)
                 {
-                    openBrackets.Pop();
+                    openBrackets--;
+                }
+                
+                if (openBrackets < 0)
+                {
+                    return false;
                 }
             }
 
-            return !openBrackets.Any();
+            return openBrackets == 0;
         }
     }
 }
