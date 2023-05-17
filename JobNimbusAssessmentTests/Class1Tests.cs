@@ -14,8 +14,9 @@ namespace JobNimbusAssessment.Tests
         [TestMethod()]
         public void HasMatchingBracketsTest()
         {
-            Assert.IsTrue(Class1.HasMatchingBrackets("<>"));
+            Assert.IsTrue(Class1.HasMatchingBrackets(null));
             Assert.IsTrue(Class1.HasMatchingBrackets(string.Empty));
+            Assert.IsTrue(Class1.HasMatchingBrackets("<>"));
             Assert.IsTrue(Class1.HasMatchingBrackets("<abc...xyz>"));
 
             Assert.IsFalse(Class1.HasMatchingBrackets("><"));

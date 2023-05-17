@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace JobNimbusAssessment
 {
@@ -6,33 +7,40 @@ namespace JobNimbusAssessment
     {
         public static bool HasMatchingBrackets(string target)
         {
-            const char OPEN_BRACKET = '<';
-            const char CLOSE_BRACKET = '>';
-            
+            return target.HasMatchingBrackets();
+        }
+    }
+
+    internal static class ExtensionMethods
+    {
+        public static bool HasMatchingBrackets(this string target)
+        {
             if (target == null)
             {
                 return true;
             }
 
+            const char OPEN_BRACKET = '<';
+            const char CLOSE_BRACKET = '>';
+
             Stack<char> openBrackets = new Stack<char>();
-            for (int i = 0; i < target.Length; i++)
+            foreach(char character in target)
             {
-                if (target[i] == OPEN_BRACKET)
+                if (character == OPEN_BRACKET)
                 {
                     openBrackets.Push(OPEN_BRACKET);
                 }
-
-                if (target[i] == CLOSE_BRACKET && openBrackets.Count < 1)
+                else if (character == CLOSE_BRACKET && !openBrackets.Any())
                 {
                     return false;
                 }
-                else if (target[i] == CLOSE_BRACKET)
+                else if (character == CLOSE_BRACKET)
                 {
                     openBrackets.Pop();
                 }
             }
 
-            return openBrackets.Count == 0;
+            return !openBrackets.Any();
         }
     }
 }
