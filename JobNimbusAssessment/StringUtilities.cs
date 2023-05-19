@@ -1,30 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace JobNimbusAssessment
+﻿namespace JobNimbusAssessment
 {
-    public class Class1
+    public static class StringUtilities
     {
         public static bool HasMatchingBrackets(string target)
         {
-            return target.HasMatchingBrackets();
-        }
-    }
-
-    internal static class ExtensionMethods
-    {
-        public static bool HasMatchingBrackets(this string target)
-        {
-            if (target == null)
-            {
-                return true;
-            }
-
             const char OPEN_BRACKET = '<';
             const char CLOSE_BRACKET = '>';
 
             int openBrackets = 0;
-            foreach(char character in target)
+            foreach (char character in target)
             {
                 if (character == OPEN_BRACKET)
                 {
@@ -34,7 +18,7 @@ namespace JobNimbusAssessment
                 {
                     openBrackets--;
                 }
-                
+
                 if (openBrackets < 0)
                 {
                     return false;
